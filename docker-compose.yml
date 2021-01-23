@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+
+  #PHP Service
+  tmdb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tmdb:1.0
+    container_name: tmdb_php
+    restart: on-failure
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - tmdb-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:stable
+    container_name: tmdb_webserver
+    restart: on-failure
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - tmdb-network
+
+  #MySQL
+  mysql:
+    image: mysql
+    restart: on-failure
+    container_name: tmdb_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: tmdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../mysql:/data/db
+    networks:
+      - tmdb-network
+
+#Docker Networks
+networks:
+  tmdb-network:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
