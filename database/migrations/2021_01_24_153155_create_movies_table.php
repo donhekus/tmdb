@@ -20,7 +20,6 @@ class CreateMoviesTable extends Migration
             $table->date('release_date');
             $table->text('overview');
             $table->string('poster_url');
-            $table->string('tmdb_id');
             $table->float('tmdb_vote_average', 3);
             $table->integer('tmdb_vote_count');
             $table->string('tmdb_url');
