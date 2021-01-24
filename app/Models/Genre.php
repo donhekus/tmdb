@@ -21,8 +21,14 @@ class Genre extends Model
 	 * @inheritdoc
 	 */
 	protected $fillable = [
+		'id',
 		'name',
 	];
+
+	/**
+	 * @inheritdoc
+	 */
+	public $timestamps = false;
 
 	/**
 	 * @return BelongsToMany

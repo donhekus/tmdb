@@ -18,7 +18,7 @@ class TmdbApiClient
 	public function getList(int $limit): array
 	{
 		$result = [];
-
+		$page = 1;
 		while (count($result) < $limit) {
 			$result = array_merge(
 				$result,
@@ -26,11 +26,13 @@ class TmdbApiClient
 					config('tmdb_importer.api_url') . 'movie/top_rated',
 					[
 						'api_key' => config('tmdb_importer.api_key'),
+						'page'    => $page,
 					]
 				)->json()['results']
 			);
+			$page++;
 		}
-		return $result;
+		return array_slice($result, 0, $limit);
 	}
 
 	/**

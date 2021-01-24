@@ -2,16 +2,15 @@
 
 namespace Tmdb\Importer\Facades;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Importer
  *
- * @method Collection getList(int $limit)
- * @method Collection getMovie(string $movieId)
- * @method Collection getCredits(string $movieId)
- * @method Collection getDirector(string $directorId)
+ * @method static array getList(int $limit)
+ * @method static array getMovie(string $movieId)
+ * @method static array getCredits(string $movieId)
+ * @method static array getCrewMember(string $directorId)
  */
 class Importer extends Facade
 {

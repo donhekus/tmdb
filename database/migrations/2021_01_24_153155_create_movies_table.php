@@ -16,7 +16,7 @@ class CreateMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->integer('length');
+            $table->integer('length')->nullable();
             $table->date('release_date');
             $table->text('overview');
             $table->string('poster_url');

@@ -18,3 +18,6 @@ use Laravel\Lumen\Routing\Router;
 $router->get(
 	'/', 'HomeController@index'
 );
+$router->get(
+	'/show', 'HomeController@show'
+);

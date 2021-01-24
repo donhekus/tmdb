@@ -32,11 +32,17 @@ class Director extends Model
 	 * @inheritdoc
 	 */
 	protected $fillable = [
+		'id',
 		'name',
 		'tmdb_id',
 		'bio',
 		'date_of_birth',
 	];
+
+	/**
+	 * @inheritdoc
+	 */
+	public $timestamps = false;
 
 	/**
 	 * @return BelongsToMany

@@ -38,6 +38,7 @@ class Movie extends Model
 	 * @inheritdoc
 	 */
 	protected $fillable = [
+		'id',
 		'title',
 		'length',
 		'release_date',
@@ -48,6 +49,11 @@ class Movie extends Model
 		'tmdb_vote_count',
 		'tmdb_url',
 	];
+
+	/**
+	 * @inheritdoc
+	 */
+	public $timestamps = false;
 
 	/**
 	 * @return BelongsToMany
