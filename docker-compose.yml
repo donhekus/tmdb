@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: tmdb:1.0
-    container_name: tmdb_php
+    container_name: app
     restart: on-failure
     tty: true
     working_dir: /var/www
