@@ -7,6 +7,7 @@ use App\Repositories\Interfaces\DirectorRepository;
 use App\Repositories\Interfaces\GenreRepository;
 use App\Repositories\Interfaces\MovieRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * Class EloquentMovieRepository
@@ -47,6 +48,22 @@ class EloquentMovieRepository implements MovieRepository
 	/**
 	 * @inheritDoc
 	 */
+	public function get(): Collection
+	{
+		return $this->movieModel->newQuery()->get();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function find(int $id): ?Model
+	{
+		return $this->movieModel->newQuery()->find($id);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function store(array $data): Model
 	{
 		/** @var Movie $movie */
@@ -63,6 +80,19 @@ class EloquentMovieRepository implements MovieRepository
 		}
 
 		return $movie;
+	}
+
+	public function update(Movie $movie, array $data): bool
+	{
+		return $movie->update($data);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function delete(Movie $movie): bool
+	{
+		return $movie->delete();
 	}
 
 	/**
